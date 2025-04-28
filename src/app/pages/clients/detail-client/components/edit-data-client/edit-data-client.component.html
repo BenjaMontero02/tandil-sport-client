@@ -1,0 +1,349 @@
+<!-- <div class="border py-6 h-full overflow-auto border-neutral-300 rounded-md"> -->
+<form class="h-full w-full" [formGroup]="this.formGroup">
+  @if(tab === 0){
+  <div class="flex flex-col w-full gap-4 px-10 h-full">
+    <div class="w-full flex justify-between items-center">
+      <h3 class="font-bold text-2xl">Editar informacion del cliente</h3>
+    </div>
+    <div class="grid grid-cols-3 overflow-y-auto h-full">
+      <div class="col-span-1 flex flex-col items-center gap-4">
+        @if(photo() == null){
+        <p-image
+          [src]="this.formGroup.get('photo')!.value"
+          alt="Imageeeeeeeeeee"
+          imageClass="w-52 h-52 rounded-[80%]"
+        />
+        }@else {
+        <p-image
+          [src]="objectUrl!"
+          alt="Image"
+          imageClass="w-52 h-52 rounded-[80%]"
+        />
+        }
+        <app-button
+          (onClick)="handleModals('modalPhoto')"
+          label="Nueva imagen"
+          icon="pi pi-upload"
+          iconPos="right"
+          typeButton="info"
+        />
+      </div>
+      <div class="col-span-2 flex justify-start gap-14">
+        <div class="flex gap-4 flex-col md:w-1/2 lg:w-1/3">
+          <div class="flex flex-col w-full">
+            <p class="font-semibold">Nombre</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="firstName"
+            />
+          </div>
+          <div class="flex flex-col">
+            <p class="font-semibold">Dni</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="dni"
+            />
+          </div>
+          <div class="flex flex-col">
+            <p class="font-semibold">GENERO</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="gender"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <p class="font-semibold">Email</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="email"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <p class="font-semibold">Activo</p>
+            <p-toggleswitch
+              styleClass="my-toggle-switch"
+              formControlName="isActive"
+            />
+          </div>
+        </div>
+        <div class="flex gap-4 flex-col md:w-1/2 lg:w-1/3">
+          <div class="flex flex-col">
+            <p class="font-semibold">Apellido</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="lastName"
+            />
+          </div>
+          <div class="flex flex-col">
+            <p class="font-semibold">Edad</p>
+            <p-inputnumber
+              formControlName="age"
+              class="w-full"
+              inputStyleClass="w-full bg-slate-100 border-neutral-300 text-black"
+              mode="decimal"
+              inputId="withoutgrouping"
+              [useGrouping]="false"
+            />
+          </div>
+          <div class="flex flex-col">
+            <p class="font-semibold">Fecha de nacimiento</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="birthDate"
+            />
+            <app-message-error
+              [hasError]="
+                this.formGroup.get('birthDate')?.hasError('pattern')
+                  ? true
+                  : false
+              "
+              errorMessage="El formato debe ser dd/mm/yy"
+            />
+          </div>
+          <div class="flex flex-col">
+            <p class="font-semibold">Celular</p>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="phone"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <p class="font-semibold">Asegurado</p>
+            <p-toggleswitch
+              styleClass="my-toggle-switch"
+              formControlName="isInsured"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @if(tab === 1){
+  <div class="flex flex-col w-full h-full gap-4">
+    <h3 class="px-10 font-bold text-2xl">Actividades</h3>
+    <div class="flex flex-col w-full h-full gap-4 overflow-y-auto px-10">
+      @for (activity of getActivities(); track $index) {
+      <div
+        class="flex flex-col gap-2 border border-neutral-300 px-6 rounded-md py-4 w-[80%]"
+        [formGroup]="activity"
+      >
+        <div class="flex justify-between">
+          <input
+            type="text"
+            class="w-1/3 bg-slate-100 border-neutral-300 text-black"
+            pInputText
+            formControlName="activityName"
+          />
+          <!-- <h3 class="font-semibold text-lg">{{ activity.activityName }}</h3> -->
+          <div class="flex gap-1 items-center">
+            <p>
+              <span class="pi pi-clock font-semibold"> </span>
+              <span class="font-semibold"> Fecha de inicio:</span>
+              {{ activity.get("creationDate")?.value }}
+            </p>
+            <p
+              (click)="this.removeActivity($index)"
+              class="pi pi-trash text-red-600 cursor-pointer hover:bg-red-200/40 p-2 rounded-xl"
+            ></p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <p>
+            <span class="pi pi-map-marker font-semibold"> </span>
+            <span class="font-semibold"> Ubicacion:</span>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="attendedLocation"
+            />
+          </p>
+          <div class="flex flex-col text-start">
+            <div class="flex items-baseline gap-1">
+              <span class="pi pi-calendar font-semibold"> </span>
+              <p class="font-semibold">Dias que asiste:</p>
+            </div>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="attendedDays"
+            />
+          </div>
+          <div class="flex flex-col text-start">
+            <div class="flex items-baseline gap-1">
+              <span class="pi pi-check-circle font-semibold"></span>
+              <p class="font-semibold">Objetivo:</p>
+            </div>
+            <input
+              type="text"
+              class="w-full bg-slate-100 border-neutral-300 text-black"
+              pInputText
+              formControlName="goal"
+            />
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  } @if(tab === 2){
+  <div formGroupName="healthData" class="flex flex-col w-full gap-4 h-full">
+    <h3 class="px-10 font-bold text-2xl">Informacion de salud</h3>
+    <div class="grid grid-cols-5 px-10 gap-10 w-full overflow-y-auto">
+      <div class="flex flex-col col-span-2">
+        <h3 class="font-bold text-lg">Informacion fisica</h3>
+        <div class="flex flex-col gap-4 border-b border-neutral-300 pb-4 pt-2">
+          <div class="flex gap-20">
+            <div>
+              <p class="font-semibold">Peso (kg)</p>
+              <p-inputnumber
+                formControlName="weight"
+                class="w-full"
+                inputStyleClass="w-full bg-slate-100 border-neutral-300 text-black"
+                [minFractionDigits]="1"
+                [maxFractionDigits]="3"
+              />
+            </div>
+            <div>
+              <p class="font-semibold">Altura (cm)</p>
+              <p-inputnumber
+                formControlName="height"
+                class="w-full"
+                inputStyleClass="w-full bg-slate-100 border-neutral-300 text-black"
+                [minFractionDigits]="1"
+                [maxFractionDigits]="3"
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <p class="font-semibold">Presion arterial</p>
+              <input
+                type="text"
+                class="w-full bg-slate-100 border-neutral-300 text-black"
+                pInputText
+                formControlName="bloodPressure"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <h3 class="font-bold text-lg">Informacion medica</h3>
+          <div class="flex flex-col gap-2">
+            <div>
+              <p class="font-semibold">Obra social:</p>
+              <input
+                type="text"
+                class="w-full bg-slate-100 border-neutral-300 text-black"
+                pInputText
+                formControlName="healthInsurance"
+              />
+            </div>
+
+            <div>
+              <p class="font-semibold">Enfermedades:</p>
+              <textarea
+                rows="3"
+                class="w-full resize-none bg-slate-100 border-neutral-300 text-black"
+                pTextarea
+                formControlName="diseases"
+              ></textarea>
+            </div>
+            <div>
+              <p class="font-semibold">Medicamentos:</p>
+              <textarea
+                rows="3"
+                class="w-full resize-none bg-slate-100 border-neutral-300 text-black"
+                pTextarea
+                formControlName="medications"
+              ></textarea>
+            </div>
+            <div>
+              <p class="font-semibold">Problemas oseos:</p>
+              <textarea
+                rows="3"
+                class="w-full resize-none bg-slate-100 border-neutral-300 text-black"
+                pTextarea
+                formControlName="boneIssues"
+              ></textarea>
+            </div>
+            <div class="flex items-center gap-2">
+              <p class="font-semibold">Es fumador:</p>
+              <p-toggleswitch
+                styleClass="my-toggle-switch"
+                formControlName="smoker"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-3 flex flex-col justify-start gap-8 w-full">
+        <div>
+          <p class="font-semibold">Estudios recientes:</p>
+          <textarea
+            rows="4"
+            class="w-full resize-none bg-slate-100 border-neutral-300 text-black"
+            pTextarea
+            formControlName="currentStudies"
+          ></textarea>
+        </div>
+
+        <app-carrousel
+          [images]="formGroup.get('healthData.studyImages')?.value"
+          [isEditing]="true"
+          (onDeleteImage)="removeHealthImage($event)"
+        />
+        <app-button
+          (onClick)="handleModals('modalImageHealth')"
+          label="Agregar estudios"
+          icon="pi pi-upload"
+          iconPos="right"
+          typeButton="info"
+        />
+      </div>
+    </div>
+  </div>
+  }
+</form>
+<!-- <--------------Modals---------------->
+<app-generic-modal
+  [visible]="modals() === 'modalPhoto'"
+  title="Nueva foto de perfil"
+  (onClose)="handleModals(null)"
+>
+  <app-dropzone
+    (onFileSelected)="onSendFile($event)"
+    (onClose)="handleModals(null)"
+    accept=".png,.jpeg,.jpg"
+  />
+</app-generic-modal>
+
+<app-generic-modal
+  [visible]="modals() === 'modalImageHealth'"
+  title="Agregar imagenes de estudios"
+  (onClose)="handleModals(null)"
+>
+  <app-dropzone
+    (onFileSelected)="onSendFilesHealthImages($event)"
+    (onClose)="handleModals(null)"
+    accept=".png,.jpeg,.jpg"
+    [quantityAcceptedFiles]="5"
+  />
+</app-generic-modal>
+<!-- </div> -->

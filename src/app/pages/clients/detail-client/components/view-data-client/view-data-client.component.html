@@ -1,0 +1,172 @@
+<!-- <div class="border py-6 h-full overflow-auto border-neutral-300 rounded-md"> -->
+@if(tab === 0){
+<div class="flex flex-col w-full gap-4 px-10">
+  <div class="w-full flex justify-between items-center">
+    <div>
+      <h3 class="font-bold text-2xl">
+        {{ client.firstName }} {{ client.lastName }}
+      </h3>
+      <p class="text-gray-500">Client ID: id</p>
+    </div>
+    <app-button-information
+      [text]="client.isActive ? 'Activo' : 'Desactivado'"
+      [severity]="client.isActive ? 'success' : 'danger'"
+    />
+  </div>
+  <div class="grid grid-cols-3 overflow-y-auto">
+    <div class="col-span-1 flex flex-col items-center gap-4">
+      <p-image
+        src="{{client.photo}}"
+        alt="Image"
+        imageClass="w-52 h-52 rounded-[80%]"
+      />
+      <p class="text-gray-500">
+        Miembro desde {{ formattedDate(client.creationDate) }}
+      </p>
+
+      <app-button-information
+        [text]="client.isInsured ? 'Asegurado' : 'No asegurado'"
+        [severity]="client.isInsured ? 'success' : 'danger'"
+      />
+    </div>
+    <div class="col-span-2 flex justify-start gap-14">
+      <div class="flex gap-4 flex-col">
+        <div class="flex flex-col">
+          <p class="text-gray-500">Edad</p>
+          <p class="font-semibold">{{ client.age }} años</p>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-gray-500">Fecha de nacimiento</p>
+          <p class="font-semibold">
+            {{ formattedDate(client.birthDate) }}
+          </p>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-gray-500">Email</p>
+          <p class="font-semibold">{{ client.email }}</p>
+        </div>
+      </div>
+      <div class="flex gap-4 flex-col">
+        <div class="flex flex-col">
+          <p class="text-gray-500">Dni</p>
+          <p class="font-semibold">{{ client.dni }}</p>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-gray-500">GENERO</p>
+          <p class="font-semibold">{{ client.gender }}</p>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-gray-500">Celular</p>
+          <p class="font-semibold">{{ client.phone }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} @if(tab === 1){
+<div class="flex flex-col w-full h-full gap-4">
+  <h3 class="px-10 font-bold text-2xl">Actividades</h3>
+  <div class="flex flex-col w-full h-full gap-4 overflow-y-auto px-10">
+    @for (activity of client.activities; track $index) {
+    <div
+      class="flex flex-col gap-2 border border-neutral-300 px-6 rounded-md py-4 w-[80%]"
+    >
+      <div class="flex justify-between">
+        <h3 class="font-semibold text-lg">{{ activity.activityName }}</h3>
+        <p>
+          <span class="pi pi-clock text-gray-500"> </span>
+          <span class="text-gray-500"> Fecha de inicio:</span>
+          {{ formattedDate(activity.creationDate) }}
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <p>
+          <span class="pi pi-map-marker text-gray-500"> </span>
+          <span class="text-gray-500"> Ubicacion:</span>
+          {{ activity.attendedLocation }}
+        </p>
+        <div class="flex flex-col text-start">
+          <div class="flex items-baseline gap-1">
+            <span class="pi pi-calendar text-gray-500"> </span>
+            <p class="text-gray-500">Dias que asiste:</p>
+          </div>
+          <p>{{ activity.attendedDays }}</p>
+        </div>
+        <div class="flex flex-col text-start">
+          <div class="flex items-baseline gap-1">
+            <span class="pi pi-check-circle text-gray-500"></span>
+            <p class="text-gray-500">Objetivo:</p>
+          </div>
+          <p>{{ activity.goal }}</p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+} @if(tab === 2){
+<div class="flex flex-col w-full gap-4 h-full">
+  <h3 class="px-10 font-bold text-2xl">Informacion de salud</h3>
+  <div class="grid grid-cols-5 px-10 gap-10 w-full overflow-y-auto">
+    <div class="flex flex-col col-span-2">
+      <h3 class="font-bold text-lg">Informacion fisica</h3>
+      <div class="flex flex-col gap-4 border-b border-neutral-300 pb-4 pt-2">
+        <div class="flex gap-20">
+          <div>
+            <p class="text-gray-500">Peso</p>
+            <p>{{ client.healthData.weight }} kg</p>
+          </div>
+          <div>
+            <p class="text-gray-500">Altura</p>
+            <p>{{ client.healthData.height }} cm</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <p class="text-gray-500">Presion arterial</p>
+            <p>{{ client.healthData.bloodPressure }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-bold text-lg">Informacion medica</h3>
+        <div class="flex flex-col gap-2">
+          <div>
+            <p class="text-gray-500">Obra social:</p>
+            <p>{{ client.healthData.healthInsurance }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">Enfermedades:</p>
+            <p>{{ client.healthData.diseases }}</p>
+          </div>
+          <div>
+            <p class="text-gray-500">Medicamentos:</p>
+            <p>{{ client.healthData.medications }}</p>
+          </div>
+          <div>
+            <p class="text-gray-500">Problemas oseos:</p>
+            <p>{{ client.healthData.boneIssues }}</p>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <p class="text-gray-500">Es fumador:</p>
+            <app-button-information
+              [text]="client.healthData.smoker ? 'No' : 'Si'"
+              [severity]="client.healthData.smoker ? 'success' : 'danger'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-3 flex flex-col justify-start gap-8 w-full">
+      <div>
+        <p class="text-gray-500">Estudios recientes:</p>
+        <p>{{ client.healthData.currentStudies }}</p>
+      </div>
+
+      <app-carrousel [images]="client.healthData.studyImages" />
+    </div>
+  </div>
+</div>
+}
+<!-- </div> -->

@@ -1,0 +1,7 @@
+@if(typeButton === "danger"){
+    <p-button [disabled]="disabled" raised styleClass="bg-red-500/80 border-red-500 text-white" (onClick)="this.onClick.emit()" [label]="label" [icon]="icon" [iconPos]="iconPos" />
+}@else if (typeButton === "success") {
+    <p-button [disabled]="disabled" raised styleClass="bg-sky-600/80 border-sky-600" (onClick)="this.onClick.emit()" [label]="label" [icon]="icon" [iconPos]="iconPos" />
+}@else {
+    <p-button [disabled]="disabled" raised styleClass="bg-gray-300/80 border-gray-300" (onClick)="this.onClick.emit()" [label]="label" [icon]="icon" [iconPos]="iconPos" />
+}

@@ -1,0 +1,7 @@
+@if (severity == "danger") {
+<p class="w-fit px-2 py-0.5 text-md font-semibold cursor-default bg-red-600/30 text-red-600 rounded-4xl border border-red-600">{{ text }}</p>
+} @else if (severity == "success") {
+<p class="w-fit px-2 py-0.5 cursor-default text-md font-semibold rounded-4xl bg-green-600/30 text-green-600 border border-green-600">{{ text }}</p>
+} @else if (severity == "info") {
+<p class="w-fit px-4 py-1 cursor-default rounded-4xl">{{ text }}</p>
+}

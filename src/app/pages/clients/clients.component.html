@@ -1,0 +1,32 @@
+<section class="flex flex-col gap-4 h-full">
+  <div class="flex justify-between items-end">
+    <app-title [value]="'Clientes'" classColor="text-sky-500" />
+    <div>
+      <app-button
+        (onClick)="handleModals('modalExcel')"
+        label="Cargar excel"
+        icon="pi pi-upload"
+        iconPos="right"
+        typeButton="success"
+      />
+      <!-- <p-button (onClick)="handleModals('modalExcel')" label="Cargar excel" icon="pi pi-upload" iconPos="right" /> -->
+    </div>
+  </div>
+
+  <div class="h-full overflow-hidden">
+    <app-table-clients />
+  </div>
+
+  <!-- <--------------Modals---------------->
+  <app-generic-modal
+    [visible]="modals() === 'modalExcel'"
+    title="Cargar excel"
+    (onClose)="handleModals(null)"
+  >
+    <app-dropzone
+      (onFileSelected)="onSendExcelFile($event)"
+      (onClose)="handleModals(null)"
+      accept=".xlsx"
+    />
+  </app-generic-modal>
+</section>

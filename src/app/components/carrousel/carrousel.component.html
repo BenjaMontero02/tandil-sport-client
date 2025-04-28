@@ -1,0 +1,44 @@
+<p-carousel
+  [value]="images"
+  [numVisible]="1"
+  [numScroll]="1"
+  [showIndicators]="false"
+  styleClass="w-full"
+>
+  <ng-template let-image #item>
+    <div class="relative mx-auto">
+      <img
+        [srcset]="image"
+        [alt]="image"
+        class="w-full h-80 lg:h-96 rounded-border"
+      />
+      @if (isEditing) {<p-button
+        raised
+        class="absolute top-0 right-0"
+        styleClass="bg-red-500/80 h-4 w-4 border-red-500 text-white m-4 p-4"
+        (onClick)="openDialog.set({ open: true, image: image })"
+        icon="pi pi-trash"
+      />}
+    </div>
+  </ng-template>
+</p-carousel>
+<app-generic-modal
+  [visible]="openDialog().open"
+  title="Estas seguro que deseas eliminar la imagen?"
+  (onClose)="openDialog.set({ open: false, image: null })"
+>
+  <div class="flex justify-end gap-4">
+    <app-button
+      label="Eliminar"
+      icon="pi pi-trash"
+      typeButton="danger"
+      (onClick)="onDeleteImage.emit(openDialog().image!); openDialog.set({ open: false, image: null })"
+    />
+    <app-button
+      label="Cancelar"
+      icon="pi pi-times"
+      typeButton="info"
+      (onClick)="openDialog.set({ open: false, image: null })"
+    />
+  </div>
+</app-generic-modal>

@@ -1,0 +1,12 @@
+<p-dialog
+  [header]="title"
+  [(visible)]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+  (onHide)="onClose.emit()"
+  styleClass="ml-64 w-[40vw]"
+>
+  <ng-content></ng-content>
+</p-dialog>
