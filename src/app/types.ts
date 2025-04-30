@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from "@angular/common/http";
+
 export interface Client {
   id: string
-  firstName: string;
+  name: string;
   lastName: string;
   dni: string;
   age: number;
@@ -10,7 +12,7 @@ export interface Client {
   birthDate: Date;
   creationDate: Date;
   isActive: boolean;
-  photo: string;
+  photo?: string;
   activities: Activity[]; // Relationship with Activity
   healthData: HealthData; // Relationship with HealthData
   isInsured: boolean;
@@ -37,4 +39,22 @@ export interface HealthData {
   medications: string; // List of medications (optional)
   boneIssues: string; // List of bone issues (optional)
   smoker: boolean;
+}
+
+export interface Pagination<T> {
+  items: T[]
+  meta: {
+    totalPages: number
+    currentPage: number
+  }
+}
+
+export interface ApiError{
+  status: number
+  message: string
+  error: string
+}
+
+export interface ApiErrorResponse extends HttpErrorResponse{
+  error: ApiError
 }

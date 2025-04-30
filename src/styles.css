@@ -2,10 +2,32 @@
 @plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
 
+
 /* .custom-toggle-switch .p-toggleswitch-slider {
     background-color: #38bdf8;
   } */
   
   .my-toggle-switch.p-toggleswitch-checked .p-toggleswitch-slider {
     background-color: #00a63e; /* sky-600 cuando está activo */
+  }
+
+  .p-toast-message{
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .p-toast-message-error{
+    background-color: var(--p-red-300);
+  }
+
+  .p-toast-message-success{
+    background-color: var(--p-green-300);
+  }
+
+  .p-toast-message-info{
+    background-color: var(--p-blue-200);
+  }
+
+  .p-toast-close-button{
+    display: none;
   }

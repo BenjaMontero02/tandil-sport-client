@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   OnInit,
   signal,
 } from '@angular/core';
@@ -21,6 +22,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ClientService } from '../../../services/client-service';
+import { MessageToastService } from '../../../services/message-toast-service';
+import { error } from 'console';
+import { Subject, takeUntil } from 'rxjs';
 
 type TabValue = 0 | 1 | 2;
 @Component({
@@ -35,22 +40,38 @@ type TabValue = 0 | 1 | 2;
   templateUrl: './detail-client.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailClientComponent implements OnInit {
+export class DetailClientComponent implements OnInit, OnDestroy {
   loading = signal<boolean>(true);
-  constructor(private route: ActivatedRoute) {}
   tabSelected = signal<TabValue>(0);
   client = signal<Client | null>(null);
   isClientEditing = signal<boolean>(false);
   formGroup: FormGroup | null = null;
+  private destroy$ = new Subject<void>();
+
+  constructor(
+    private route: ActivatedRoute,
+    private clientService: ClientService,
+    private messageService: MessageToastService
+  ) {}
 
   ngOnInit() {
-     //TODO: OBTENER CLIENTE POR ID
-    const id = this.route.snapshot.paramMap.get('id'); // devuelve string | null
-    console.log('ID recibido:', id);
-    setTimeout(() => {
-      this.loading.set(false);
-      this.client.set(mockClients[0][8]);
-    }, 2000); // Simulando una carga de datos
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.clientService
+      .getClientById(id)
+      .pipe(takeUntil(this.destroy$)) // corta la subscripción al destruir el componente
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.loading.set(false);
+          this.client.set(data);
+        },
+        error: (err) => {
+          this.loading.set(false);
+          this.messageService.onError(err);
+        },
+      });
   }
 
   onChangeTab(value: TabValue) {
@@ -71,7 +92,7 @@ export class DetailClientComponent implements OnInit {
   onEditProfile() {
     this.isClientEditing.set(true);
     this.formGroup = new FormGroup({
-      firstName: new FormControl(this.client()!.firstName),
+      name: new FormControl(this.client()!.name),
       lastName: new FormControl(this.client()!.lastName),
       dni: new FormControl(this.client()!.dni),
       age: new FormControl(this.client()!.age),
@@ -119,5 +140,10 @@ export class DetailClientComponent implements OnInit {
         smoker: new FormControl(this.client()!.healthData.smoker),
       }),
     });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

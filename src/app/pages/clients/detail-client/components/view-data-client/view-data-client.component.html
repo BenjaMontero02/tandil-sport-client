@@ -4,9 +4,9 @@
   <div class="w-full flex justify-between items-center">
     <div>
       <h3 class="font-bold text-2xl">
-        {{ client.firstName }} {{ client.lastName }}
+        {{ client.name }} {{ client.lastName }}
       </h3>
-      <p class="text-gray-500">Client ID: id</p>
+      <p class="text-gray-500">Client ID: {{ client.id }}</p>
     </div>
     <app-button-information
       [text]="client.isActive ? 'Activo' : 'Desactivado'"
@@ -16,7 +16,7 @@
   <div class="grid grid-cols-3 overflow-y-auto">
     <div class="col-span-1 flex flex-col items-center gap-4">
       <p-image
-        src="{{client.photo}}"
+        src="{{ client.photo ? client.photo : '/user-photo.png' }}"
         alt="Image"
         imageClass="w-52 h-52 rounded-[80%]"
       />

@@ -5,8 +5,8 @@ export const mockClients: Client[][] = [
   [
     // ───────── Client 01
     {
-      id: "test",
-      firstName: 'Lucas',
+      id: 'test',
+      name: 'Lucas',
       lastName: 'Gómez',
       dni: '30000001',
       age: 23,
@@ -44,8 +44,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 02
     {
-      id: "test",
-      firstName: 'Martina',
+      id: 'test',
+      name: 'Martina',
       lastName: 'Pérez',
       dni: '30000002',
       age: 39,
@@ -83,8 +83,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 03
     {
-      id: "test",
-      firstName: 'Sofía',
+      id: 'test',
+      name: 'Sofía',
       lastName: 'Rossi',
       dni: '30000003',
       age: 18,
@@ -122,8 +122,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 04
     {
-      id: "test",
-      firstName: 'Tomás',
+      id: 'test',
+      name: 'Tomás',
       lastName: 'Luna',
       dni: '30000004',
       age: 35,
@@ -161,8 +161,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 05
     {
-      id: "test",
-      firstName: 'Valentina',
+      id: 'test',
+      name: 'Valentina',
       lastName: 'Fernández',
       dni: '30000005',
       age: 19,
@@ -200,8 +200,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 06
     {
-      id: "test",
-      firstName: 'Diego',
+      id: 'test',
+      name: 'Diego',
       lastName: 'Martínez',
       dni: '30000006',
       age: 37,
@@ -239,8 +239,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 07
     {
-      id: "test",
-      firstName: 'Carla',
+      id: 'test',
+      name: 'Carla',
       lastName: 'Nuñez',
       dni: '30000007',
       age: 25,
@@ -278,8 +278,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 08
     {
-      id: "test",
-      firstName: 'Gonzalo',
+      id: 'test',
+      name: 'Gonzalo',
       lastName: 'Ibarra',
       dni: '30000008',
       age: 24,
@@ -317,8 +317,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 09
     {
-      id: "test",
-      firstName: 'Agustina',
+      id: 'test',
+      name: 'Agustina',
       lastName: 'Ruiz',
       dni: '30000009',
       age: 19,
@@ -328,7 +328,8 @@ export const mockClients: Client[][] = [
       birthDate: new Date('2005-11-16'),
       creationDate: new Date('2025-04-25'),
       isActive: false,
-      photo: 'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg',
+      photo:
+        'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg',
       isInsured: true,
       activities: [
         {
@@ -376,8 +377,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 10
     {
-      id: "test",
-      firstName: 'Nicolás',
+      id: 'test',
+      name: 'Nicolás',
       lastName: 'Silva',
       dni: '30000010',
       age: 35,
@@ -415,8 +416,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 11
     {
-      id: "test",
-      firstName: 'Fernando',
+      id: 'test',
+      name: 'Fernando',
       lastName: 'Torres',
       dni: '30000011',
       age: 25,
@@ -454,8 +455,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 12
     {
-      id: "test",
-      firstName: 'Julieta',
+      id: 'test',
+      name: 'Julieta',
       lastName: 'Romero',
       dni: '30000012',
       age: 28,
@@ -493,8 +494,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 13
     {
-      id: "test",
-      firstName: 'Emilia',
+      id: 'test',
+      name: 'Emilia',
       lastName: 'Acosta',
       dni: '30000013',
       age: 19,
@@ -532,8 +533,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 14
     {
-      id: "test",
-      firstName: 'Matías',
+      id: 'test',
+      name: 'Matías',
       lastName: 'Gutiérrez',
       dni: '30000014',
       age: 35,
@@ -571,8 +572,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 15
     {
-      id: "test",
-      firstName: 'Camila',
+      id: 'test',
+      name: 'Camila',
       lastName: 'Sánchez',
       dni: '30000015',
       age: 34,
@@ -610,8 +611,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 16
     {
-      id: "test",
-      firstName: 'Leandro',
+      id: 'test',
+      name: 'Leandro',
       lastName: 'Mendoza',
       dni: '30000016',
       age: 22,
@@ -649,8 +650,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 17
     {
-      id: "test",
-      firstName: 'Paula',
+      id: 'test',
+      name: 'Paula',
       lastName: 'Alvarez',
       dni: '30000017',
       age: 33,
@@ -688,8 +689,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 18
     {
-      id: "test",
-      firstName: 'Ramiro',
+      id: 'test',
+      name: 'Ramiro',
       lastName: 'Domínguez',
       dni: '30000018',
       age: 36,
@@ -727,8 +728,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 19
     {
-      id: "test",
-      firstName: 'Micaela',
+      id: 'test',
+      name: 'Micaela',
       lastName: 'Cabrera',
       dni: '30000019',
       age: 24,
@@ -766,8 +767,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 20
     {
-      id: "test",
-      firstName: 'Sebastián',
+      id: 'test',
+      name: 'Sebastián',
       lastName: 'Vera',
       dni: '30000020',
       age: 42,
@@ -805,8 +806,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 21
     {
-      id: "test",
-      firstName: 'Antonella',
+      id: 'test',
+      name: 'Antonella',
       lastName: 'López',
       dni: '30000021',
       age: 37,
@@ -844,8 +845,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 22
     {
-      id: "test",
-      firstName: 'Julián',
+      id: 'test',
+      name: 'Julián',
       lastName: 'Castro',
       dni: '30000022',
       age: 30,
@@ -883,8 +884,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 23
     {
-      id: "test",
-      firstName: 'Florencia',
+      id: 'test',
+      name: 'Florencia',
       lastName: 'Molina',
       dni: '30000023',
       age: 23,
@@ -922,8 +923,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 24
     {
-      id: "test",
-      firstName: 'Facundo',
+      id: 'test',
+      name: 'Facundo',
       lastName: 'Peralta',
       dni: '30000024',
       age: 26,
@@ -961,8 +962,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 25
     {
-      id: "test",
-      firstName: 'Carolina',
+      id: 'test',
+      name: 'Carolina',
       lastName: 'Rojas',
       dni: '30000025',
       age: 38,
@@ -1000,8 +1001,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 26
     {
-      id: "test",
-      firstName: 'Ignacio',
+      id: 'test',
+      name: 'Ignacio',
       lastName: 'Herrera',
       dni: '30000026',
       age: 19,
@@ -1039,8 +1040,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 27
     {
-      id: "test",
-      firstName: 'Melina',
+      id: 'test',
+      name: 'Melina',
       lastName: 'Vázquez',
       dni: '30000027',
       age: 40,
@@ -1078,8 +1079,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 28
     {
-      id: "test",
-      firstName: 'Bruno',
+      id: 'test',
+      name: 'Bruno',
       lastName: 'Navarro',
       dni: '30000028',
       age: 41,
@@ -1119,8 +1120,8 @@ export const mockClients: Client[][] = [
   [
     // ───────── Client 29
     {
-      id: "test",
-      firstName: 'Rocío',
+      id: 'test',
+      name: 'Rocío',
       lastName: 'Ortega',
       dni: '30000029',
       age: 22,
@@ -1158,8 +1159,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 30
     {
-      id: "test",
-      firstName: 'Franco',
+      id: 'test',
+      name: 'Franco',
       lastName: 'Figueroa',
       dni: '30000030',
       age: 35,
@@ -1197,8 +1198,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 31
     {
-      id: "test",
-      firstName: 'Lautaro',
+      id: 'test',
+      name: 'Lautaro',
       lastName: 'Correa',
       dni: '30000031',
       age: 18,
@@ -1236,8 +1237,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 32
     {
-      id: "test",
-      firstName: 'Noelia',
+      id: 'test',
+      name: 'Noelia',
       lastName: 'Ponce',
       dni: '30000032',
       age: 38,
@@ -1275,8 +1276,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 33
     {
-      id: "test",
-      firstName: 'Pablo',
+      id: 'test',
+      name: 'Pablo',
       lastName: 'Giménez',
       dni: '30000033',
       age: 24,
@@ -1314,8 +1315,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 34
     {
-      id: "test",
-      firstName: 'Ailén',
+      id: 'test',
+      name: 'Ailén',
       lastName: 'Rivera',
       dni: '30000034',
       age: 29,
@@ -1353,8 +1354,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 35
     {
-      id: "test",
-      firstName: 'Esteban',
+      id: 'test',
+      name: 'Esteban',
       lastName: 'Salas',
       dni: '30000035',
       age: 21,
@@ -1392,8 +1393,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 36
     {
-      id: "test",
-      firstName: 'Milagros',
+      id: 'test',
+      name: 'Milagros',
       lastName: 'Ferreyra',
       dni: '30000036',
       age: 36,
@@ -1431,8 +1432,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 37
     {
-      id: "test",
-      firstName: 'Cristian',
+      id: 'test',
+      name: 'Cristian',
       lastName: 'Campos',
       dni: '30000037',
       age: 21,
@@ -1470,8 +1471,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 38
     {
-      id: "test",
-      firstName: 'Daniela',
+      id: 'test',
+      name: 'Daniela',
       lastName: 'Carrizo',
       dni: '30000038',
       age: 19,
@@ -1509,8 +1510,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 39
     {
-      id: "test",
-      firstName: 'Hernán',
+      id: 'test',
+      name: 'Hernán',
       lastName: 'Barrios',
       dni: '30000039',
       age: 34,
@@ -1548,8 +1549,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 40
     {
-      id: "test",
-      firstName: 'Belén',
+      id: 'test',
+      name: 'Belén',
       lastName: 'Suárez',
       dni: '30000040',
       age: 26,
@@ -1587,8 +1588,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 41
     {
-      id: "test",
-      firstName: 'Germán',
+      id: 'test',
+      name: 'Germán',
       lastName: 'Aguilar',
       dni: '30000041',
       age: 40,
@@ -1626,8 +1627,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 42
     {
-      id: "test",
-      firstName: 'Luciana',
+      id: 'test',
+      name: 'Luciana',
       lastName: 'Cardozo',
       dni: '30000042',
       age: 25,
@@ -1665,8 +1666,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 43
     {
-      id: "test",
-      firstName: 'Mauricio',
+      id: 'test',
+      name: 'Mauricio',
       lastName: 'Chávez',
       dni: '30000043',
       age: 20,
@@ -1704,8 +1705,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 44
     {
-      id: "test",
-      firstName: 'Cecilia',
+      id: 'test',
+      name: 'Cecilia',
       lastName: 'Delgado',
       dni: '30000044',
       age: 34,
@@ -1743,8 +1744,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 45
     {
-      id: "test",
-      firstName: 'Rodrigo',
+      id: 'test',
+      name: 'Rodrigo',
       lastName: 'Escobar',
       dni: '30000045',
       age: 19,
@@ -1782,8 +1783,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 46
     {
-      id: "test",
-      firstName: 'Yanina',
+      id: 'test',
+      name: 'Yanina',
       lastName: 'Frías',
       dni: '30000046',
       age: 40,
@@ -1821,8 +1822,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 47
     {
-      id: "test",
-      firstName: 'Adrián',
+      id: 'test',
+      name: 'Adrián',
       lastName: 'Godoy',
       dni: '30000047',
       age: 35,
@@ -1860,8 +1861,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 48
     {
-      id: "test",
-      firstName: 'Mariana',
+      id: 'test',
+      name: 'Mariana',
       lastName: 'Insúa',
       dni: '30000048',
       age: 26,
@@ -1899,8 +1900,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 49
     {
-      id: "test",
-      firstName: 'Ezequiel',
+      id: 'test',
+      name: 'Ezequiel',
       lastName: 'Jara',
       dni: '30000049',
       age: 24,
@@ -1938,8 +1939,8 @@ export const mockClients: Client[][] = [
     },
     // ───────── Client 50
     {
-      id: "test",
-      firstName: 'Natalia',
+      id: 'test',
+      name: 'Natalia',
       lastName: 'Krause',
       dni: '30000050',
       age: 30,

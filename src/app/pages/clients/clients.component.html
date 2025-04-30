@@ -1,5 +1,5 @@
-<section class="flex flex-col gap-4 h-full">
-  <div class="flex justify-between items-end">
+<section class="flex flex-col h-full border-b">
+  <div class="flex justify-between items-end mb-2">
     <app-title [value]="'Clientes'" classColor="text-sky-500" />
     <div>
       <app-button
@@ -12,21 +12,122 @@
       <!-- <p-button (onClick)="handleModals('modalExcel')" label="Cargar excel" icon="pi pi-upload" iconPos="right" /> -->
     </div>
   </div>
-
-  <div class="h-full overflow-hidden">
-    <app-table-clients />
-  </div>
-
-  <!-- <--------------Modals---------------->
-  <app-generic-modal
-    [visible]="modals() === 'modalExcel'"
-    title="Cargar excel"
-    (onClose)="handleModals(null)"
+  <app-progress-bar-loader [loading]="this.loading()" />
+  <div
+    class="h-full mt-2 flex flex-col relative overflow-y-scroll border-l border-t border-r"
   >
-    <app-dropzone
-      (onFileSelected)="onSendExcelFile($event)"
-      (onClose)="handleModals(null)"
-      accept=".xlsx"
-    />
-  </app-generic-modal>
+    <div class="sticky z-10 top-0 font-medium bg-slate-300 text-black">
+      <ul class="border-b grid grid-cols-11 w-full border-neutral-300 text-lg">
+        <li class="col-span-1"></li>
+        <li class="col-span-2 py-2 text-left">Nombre</li>
+        <li class="col-span-2 px-4 py-2 text-left">Dni</li>
+        <li class="col-span-2 px-4 py-2 text-left">Seguro</li>
+        <li class="col-span-2 px-4 py-2 text-left">Activo</li>
+        <li class="col-span-2 px-4 py-2 text-left">Acciones</li>
+      </ul>
+    </div>
+
+    <div class="flex flex-col w-full h-full">
+      @for (client of clients(); track $index) {
+      <ul
+        class="odd even grid grid-cols-11 border-b w-full items-center border-neutral-300 cursor-pointer hover:bg-slate-200"
+        (click)="onNavigateClient(client.id)"
+      >
+        <li class="pl-4 col-span-1" (click)="$event.stopPropagation()">
+          <p-checkbox
+            [value]="isChecked(client.id)"
+            [binary]="true"
+            (onChange)="onChecked(client.id)"
+          />
+        </li>
+        <li class="col-span-2 py-2">{{ client.name }} {{ client.lastName }}</li>
+        <li class="col-span-2 px-4 py-2">{{ client.dni }}</li>
+        <li class="col-span-2 px-4 py-2">
+          <app-button-information
+            [text]="client.isInsured ? 'Si' : 'No'"
+            [severity]="client.isInsured ? 'success' : 'danger'"
+          />
+        </li>
+        <li class="col-span-2 px-4 py-2">
+          <app-button-information
+            [text]="client.isActive ? 'Si' : 'No'"
+            [severity]="client.isActive ? 'success' : 'danger'"
+          />
+        </li>
+        <li class="col-span-2 px-4 py-2" (click)="$event.stopPropagation()">
+          @if (checkeds.length <= 1) {
+          <p-button
+            raised
+            styleClass="bg-red-500/80 h-4 w-4 border-red-500 text-white p-4"
+            (onClick)="openDialog.set({ open: true, client: client })"
+            icon="pi pi-trash"
+          />
+          }@else {
+          <div class="h-4 w-4 p-4"></div>
+          }
+        </li>
+      </ul>
+      }
+    </div>
+  </div>
+  <!-- PAGINADOR -->
+  <div
+    class="flex items-center justify-center gap-2 bg-slate-300 text-black border-x h-12"
+  >
+    <button
+      class="px-1 cursor-pointer py-1 text-2xl pi pi-angle-left text-sky-600 disabled:text-gray-400 disabled:cursor-default"
+      (click)="prevPage()"
+      [disabled]="page() === 1 || this.loading()"
+    ></button>
+
+    <span class="text-sm"> Página {{ page() }} de {{ totalPages() }} </span>
+
+    <button
+      class="px-1 py-1 text-2xl cursor-pointer rounded-xl pi pi-angle-right text-sky-600 disabled:text-gray-400 disabled:cursor-default"
+      (click)="nextPage()"
+      [disabled]="page() === totalPages() || this.loading()"
+    ></button>
+  </div>
 </section>
+<!-- <--------------Modals---------------->
+<app-generic-modal
+  [visible]="modals() === 'modalExcel'"
+  title="Cargar excel"
+  (onClose)="handleModals(null)"
+>
+  <app-dropzone
+    (onFileSelected)="onSendExcelFile($event)"
+    (onClose)="handleModals(null)"
+    accept=".xlsx"
+  />
+</app-generic-modal>
+
+<app-generic-modal
+  [visible]="openDialog().open"
+  title="Eliminar cliente"
+  (onClose)="openDialog.set({ open: false, client: null })"
+>
+  <div class="flex-col flex">
+    <p>
+      Estas seguro que deseas eliminar al cliente
+      {{ openDialog().client?.name }} {{ openDialog().client?.lastName }}
+    </p>
+  </div>
+  <div class="flex justify-end gap-4">
+    <app-button
+      label="Eliminar"
+      icon="pi pi-trash"
+      typeButton="danger"
+      (onClick)="
+        onDeleteClient(openDialog().client!.id);
+        openDialog.set({ open: false, client: null })
+      "
+    />
+    <app-button
+      label="Cancelar"
+      icon="pi pi-times"
+      typeButton="info"
+      (onClick)="openDialog.set({ open: false, client: null })"
+    />
+  </div>
+</app-generic-modal>

@@ -9,7 +9,7 @@
       <div class="col-span-1 flex flex-col items-center gap-4">
         @if(photo() == null){
         <p-image
-          [src]="this.formGroup.get('photo')!.value"
+          [src]="this.formGroup.get('photo')!.value || '/user-photo.png'"
           alt="Imageeeeeeeeeee"
           imageClass="w-52 h-52 rounded-[80%]"
         />
@@ -36,7 +36,7 @@
               type="text"
               class="w-full bg-slate-100 border-neutral-300 text-black"
               pInputText
-              formControlName="firstName"
+              formControlName="name"
             />
           </div>
           <div class="flex flex-col">

@@ -7,7 +7,7 @@
       iconPos="right"
       icon="pi pi-user-edit"
       typeButton="success"
-      [disabled]="this.loading()"
+      [disabled]="this.loading() || this.client() == null"
     />} @else {
     <div class="flex gap-4">
       <app-button
@@ -28,7 +28,7 @@
     }
   </div>
 
-  <app-progress-bar-loader [loading]="this.loading" />
+  <app-progress-bar-loader [loading]="this.loading()" />
   <section class="w-full h-full overflow-hidden flex flex-col gap-4">
     <div
       class="flex gap-2 p-1 items-center bg-neutral-300 font-semibold rounded"
@@ -61,15 +61,14 @@
         Informacion de salud
       </p>
     </div>
-    @if(!this.loading()){
+    @if(!this.loading()) {
     <div
       class="border py-6 h-full overflow-hidden border-neutral-300 rounded-md"
     >
-      @if (!isClientEditing()) {<app-view-data-client
+      @if (!isClientEditing() && this.client() != null) {<app-view-data-client
         [client]="this.client()!"
         [tab]="this.tabSelected()"
-      />} @else {
-
+      />} @else if (isClientEditing() && this.client() != null) {
       <app-edit-data-client
         [formGroup]="this.formGroup!"
         [tab]="this.tabSelected()"

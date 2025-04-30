@@ -8,5 +8,5 @@ import { ProgressBar } from 'primeng/progressbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressBarLoaderComponent {
-  @Input({ required: true }) loading!: Signal<boolean>;
+  @Input({ required: true }) loading!: boolean;
 }
