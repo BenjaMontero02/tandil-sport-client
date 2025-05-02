@@ -78,9 +78,9 @@ export class DetailClientComponent implements OnInit, OnDestroy {
     this.tabSelected.set(value);
   }
 
-  onSaveProfile() {
-    console.log('Safe profile clicked');
-    console.log('Client data:', this.formGroup);
+  async onSaveProfile() {
+    console.log("llego a editar perfil")
+    this.clientService.updateClient(this.client()!.id, this.formGroup?.value!)
     //TODO: ACTUALIZAR CLIENTE TESTEADO
   }
 
@@ -102,7 +102,7 @@ export class DetailClientComponent implements OnInit, OnDestroy {
       birthDate: new FormControl(formattedDate(this.client()!.birthDate), [
         Validators.pattern(/^\d{2}\/\d{2}\/\d{2}$/), // valida formato dd/mm/yy
       ]),
-      creationDate: new FormControl(this.client()!.creationDate),
+      //creationDate: new FormControl(this.client()!.creationDate),
       isActive: new FormControl(this.client()!.isActive),
       photo: new FormControl(this.client()!.photo),
       isInsured: new FormControl(this.client()!.isInsured),
