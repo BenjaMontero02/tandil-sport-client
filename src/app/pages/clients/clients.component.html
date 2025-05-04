@@ -2,20 +2,38 @@
   <div class="flex justify-between items-end mb-2">
     <app-title [value]="'Clientes'" classColor="text-sky-500" />
     <div class="flex gap-2">
-      @if(checkeds.length > 1){<app-button
+      @if(checkeds.length > 1){
+        <app-button
+        (onClick)="downloadCredentials(this.checkeds)"
+        label="Descargar Credenciales"
+        icon="pi pi-download"
+        iconPos="right"
+        typeButton="success"
+        [disabled]="this.loading()"
+      />
+        <app-button
         (onClick)="handleModals('modalDelete')"
         label="Eliminar clientes"
         icon="pi pi-trash"
         iconPos="right"
         typeButton="danger"
         [disabled]="this.loading()"
-      />}
+      />
+    }
       <app-button
         (onClick)="handleModals('modalExcel')"
         label="Cargar excel"
         icon="pi pi-upload"
         iconPos="right"
         typeButton="success"
+        [disabled]="this.loading()"
+      />
+      <app-button
+        (onClick)="goToCreateClient()"
+        label="Crear cliente"
+        icon="pi pi-plus"
+        iconPos="right"
+        typeButton="info"
         [disabled]="this.loading()"
       />
       <!-- <p-button (onClick)="handleModals('modalExcel')" label="Cargar excel" icon="pi pi-upload" iconPos="right" /> -->

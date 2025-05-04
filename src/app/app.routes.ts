@@ -10,6 +10,7 @@ export const routes: Routes = [
     // },
     { path: "clients", component: ClientsComponent },
     { path: "clients/:id", component: DetailClientComponent },
+    { path: "clients/create", component: CreateClientComponent },
     { path: "", redirectTo: "clients", pathMatch: "full" },
     { path: "**", redirectTo: "clients", pathMatch: "full", },
 ];

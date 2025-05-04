@@ -102,6 +102,23 @@ export class ClientsComponent implements OnInit, OnDestroy {
       });
   }
 
+  async downloadCredentials(ids: string[]) {
+    try {
+      this.loading.set(true);
+      await this.clientService.downloadCredentials(ids);
+      this.messageService.onSuccess("Credenciales", "Descarga exitosa");
+    } catch (error) {
+      this.messageService.onError(error);
+    }finally {
+      this.loading.set(false); // Desactiva el indicador de carga al completar con éxito
+    }
+    
+  }
+
+  goToCreateClient() {
+    this.router.navigate(['clients/create']);
+  }
+
   onNavigateClient(id: string): void {
     if (this.checkeds.length <= 1 || this.loading()) {
       //console.log('navegando a cliente con dni: ', id);
