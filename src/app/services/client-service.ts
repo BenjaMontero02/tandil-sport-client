@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Client, Pagination } from '../types';
+import { Client, ClientUpdate, Pagination } from '../types';
 import { firstValueFrom, Observable } from 'rxjs';
 import { environments } from '../enviroments';
 
@@ -8,7 +8,6 @@ import { environments } from '../enviroments';
   providedIn: 'root',
 })
 export class ClientService {
-  
   private apiUrl =
     environments.API_PROTOCOL +
     '://' +
@@ -19,8 +18,9 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  updateClient(id: string, client: Client): Observable<Client> {
-    return this.http.put<Client>(`${this.apiUrl}/clients/${id}`, client);
+  updateClient(id: string, client: ClientUpdate): Observable<Client> {
+    console.log('ClientService', client);
+    return this.http.patch<Client>(`${this.apiUrl}/clients/${id}`, client);
   }
 
   getAllClients(page: number, search: string): Observable<Pagination<Client>> {

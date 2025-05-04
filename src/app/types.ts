@@ -19,6 +19,7 @@ export interface Client {
 }
 
 export interface Activity {
+  id: string
   activityName: string;
   attendedLocation: string;
   attendedDays: string;
@@ -28,6 +29,7 @@ export interface Activity {
 }
 
 export interface HealthData {
+  id: string
   clientId: string; // Relationship with Client
   healthInsurance: string;
   weight: number;
@@ -58,3 +60,23 @@ export interface ApiError{
 export interface ApiErrorResponse extends HttpErrorResponse{
   error: ApiError
 }
+
+export interface ClientUpdate {
+  name: string;
+  lastName: string;
+  dni: string;
+  age: number;
+  gender: string;
+  email: string;
+  phone: string;
+  photo?: string;
+  birthDate: string;
+  isActive: boolean;
+  isInsured: boolean;
+  activities: ActivityUpdateClient[]; // Relationship with Activity
+  healthData: HealthDateUpdateClient; // Relationship with HealthData
+}
+
+type HealthDateUpdateClient = Omit<HealthData, 'clientId'>;
+
+export type ActivityUpdateClient = Partial<Omit<Activity, 'clientId'>> & { id?: string };

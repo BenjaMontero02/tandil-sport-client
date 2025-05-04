@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TitleComponent } from '../../../components/title/title.component';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { ProgressBarLoaderComponent } from '../../../components/progress-bar-loader/progress-bar-loader.component';
-import { Client } from '../../../types';
-import { mockClients } from '../../../mock';
+import { Activity, Client, ClientUpdate } from '../../../types';
+// import { mockClients } from '../../../mock';
 import { formattedDate } from '../../../util/utill';
 
 import { ViewDataClientComponent } from './components/view-data-client/view-data-client.component';
@@ -79,8 +79,45 @@ export class DetailClientComponent implements OnInit, OnDestroy {
   }
 
   async onSaveProfile() {
-    console.log("llego a editar perfil")
-    this.clientService.updateClient(this.client()!.id, this.formGroup?.value!)
+    console.log('llego a editar perfil');
+    let client: ClientUpdate = {
+      name: this.formGroup?.get('name')?.value,
+      lastName: this.formGroup?.get('lastName')?.value,
+      dni: this.formGroup?.get('dni')?.value,
+      age: parseInt(this.formGroup?.get('age')?.value),
+      gender: this.formGroup!.get('gender')?.value,
+      email: this.formGroup!.get('email')?.value,
+      phone: this.formGroup!.get('phone')?.value,
+      photo: this.formGroup!.get('photo')?.value,
+      birthDate: formattedDate(this.formGroup!.get('birthDate')?.value),
+      isActive: this.formGroup!.get('isActive')?.value,
+      isInsured: this.formGroup!.get('isInsured')?.value,
+      activities: this.formGroup!.get('activities')?.value.map((activity: any) => ({
+        id: activity.id,
+        activityName: activity.activityName,
+        attendedLocation: activity.attendedLocation,
+        attendedDays: activity.attendedDays,
+        goal: activity.goal,
+        creationDate: activity.creationDate,
+      })),
+      healthData: {
+        id: this.formGroup!.get('healthData.id')?.value,
+        healthInsurance: this.formGroup!.get('healthData.healthInsurance')
+          ?.value,
+        weight: parseFloat(this.formGroup!.get('healthData.weight')?.value),
+        height: parseFloat(this.formGroup!.get('healthData.height')?.value),
+        currentStudies: this.formGroup!.get('healthData.currentStudies')
+          ?.value,
+        studyImages: this.formGroup!.get('healthData.studyImages')?.value,
+        bloodPressure: this.formGroup!.get('healthData.bloodPressure')?.value,
+        diseases: this.formGroup!.get('healthData.diseases')?.value,
+        medications: this.formGroup!.get('healthData.medications')?.value,
+        boneIssues: this.formGroup!.get('healthData.boneIssues')?.value,
+        smoker: this.formGroup!.get('healthData.smoker')?.value,
+      },
+    };
+
+    this.clientService.updateClient(this.client()!.id, client).subscribe(() => {console.log('Cliente actualizado')});
     //TODO: ACTUALIZAR CLIENTE TESTEADO
   }
 
@@ -110,6 +147,7 @@ export class DetailClientComponent implements OnInit, OnDestroy {
         this.client()!.activities.map(
           (activity) =>
             new FormGroup({
+              id: new FormControl(activity.id),
               activityName: new FormControl(activity.activityName),
               attendedLocation: new FormControl(activity.attendedLocation),
               attendedDays: new FormControl(activity.attendedDays),
@@ -124,6 +162,7 @@ export class DetailClientComponent implements OnInit, OnDestroy {
         )
       ),
       healthData: new FormGroup({
+        id: new FormControl(this.client()!.healthData.id),
         healthInsurance: new FormControl(
           this.client()!.healthData.healthInsurance
         ),

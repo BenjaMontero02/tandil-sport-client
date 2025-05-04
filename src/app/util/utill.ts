@@ -1,3 +1,5 @@
+import { log } from "console";
+
 export function formattedDate(date: string | Date): string {
     const parsedDate = typeof date === 'string' ? new Date(date) : date;
   
